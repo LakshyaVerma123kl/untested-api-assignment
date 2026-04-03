@@ -4,6 +4,12 @@ const taskRoutes = require('./routes/tasks');
 const app = express();
 
 app.use(express.json());
+
+// Root route to prevent 'Cannot GET /'
+app.get('/', (req, res) => {
+  res.json({ message: 'Task API is running! Access endpoints at /tasks' });
+});
+
 app.use('/tasks', taskRoutes);
 
 app.use((err, req, res, next) => {
